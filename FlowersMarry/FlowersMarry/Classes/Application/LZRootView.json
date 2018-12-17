@@ -1,0 +1,28 @@
+
+[
+    {
+        "title":"首页",
+        "imageName":"tab_home_nor",
+        "imageSelectName":"tab_home_press",
+        "controllerName":"TTRootViewController",
+    },
+    {
+        "title":"找商家",
+        "imageName":"tab_business_nor",
+        "imageSelectName":"tab_business_press",
+        "controllerName":"FMBusinessViewController",
+    },
+    {
+        "title":"工具",
+        "imageName":"tab_tool_nor",
+        "imageSelectName":"tab_tool_press",
+        "controllerName":"FMToolsViewController",
+     },
+     {
+        "title":"我的",
+        "imageName":"tab_mine_nor",
+        "imageSelectName":"tab_mine_press",
+        "controllerName":"FMMineViewController",
+    }
+]
+

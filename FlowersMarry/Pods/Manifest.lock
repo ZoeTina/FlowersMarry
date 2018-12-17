@@ -1,0 +1,82 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - IQKeyboardManager (6.1.1)
+  - JCore (1.2.2)
+  - JPush (3.1.0):
+    - JCore (~> 1.2.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - MJExtension (3.0.15.1)
+  - MJRefresh (3.1.15.7)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - TTTAttributedLabel (2.0.0)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking
+  - FLAnimatedImage
+  - FMDB (~> 2.7.2)
+  - IQKeyboardManager
+  - JPush
+  - Masonry
+  - MBProgressHUD
+  - MJExtension
+  - MJRefresh
+  - SDWebImage
+  - TTTAttributedLabel
+  - YYModel
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - FLAnimatedImage
+    - FMDB
+    - IQKeyboardManager
+    - JCore
+    - JPush
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - SDWebImage
+    - TTTAttributedLabel
+    - YYModel
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  IQKeyboardManager: 79c57795f5c2408d259d37b9da2ed07efcbb5225
+  JCore: f14c0549968a63c22e246a4875aa9d428446f373
+  JPush: 5921e25ad13e0386351079217b009f2039084eac
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: d87d01319c5143ce10da3b9e2521a43e7e93d925
+
+COCOAPODS: 1.5.3

@@ -1,0 +1,23 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '9.0'
+target 'FlowersMarry' do
+    # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+    # Pods for FlowersMarry
+    pod 'AFNetworking'
+    pod 'Masonry'
+    pod 'MJExtension'
+    pod 'YYModel'
+    pod 'MJRefresh'
+    pod 'SDWebImage'
+    pod 'MBProgressHUD'
+    pod 'FLAnimatedImage'
+    pod 'FMDB', '~> 2.7.2'
+    pod 'TTTAttributedLabel'
+    pod 'IQKeyboardManager'
+#    pod 'WMPageController', '~> 2.4.0' 
+#    pod 'CGXPickerView'
+    pod 'JPush'
+#    pod 'WechatOpenSDK'
+    use_frameworks!
+# pod 'ReactiveCocoa'
+end

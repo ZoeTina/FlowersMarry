@@ -1,0 +1,155 @@
+{
+  "name": "成都维纳斯婚纱摄影",
+  "bannerText":"",
+  "url": "http://www.bejson.com",
+  "page": 88,
+  "isNonProfit": true,
+  "address":"[青羊区] 太升南路288号锦天国际C座10楼1...",
+  "addr": {
+    "address":"[青羊区] 太升南路288号锦天国际C座10楼1...",
+    "street": "太升南路",
+    "city": "四川成都",
+    "country": "中国"
+  },
+  "banner": [
+    {
+      "title": "【私属花海】冬天婚照也要拍花海",
+      "url": "base_deprecated_activity"
+    }
+  ],
+  "discount": [
+    {
+      "name": "【全场通用】2000元婚照抵用券",
+      "type": 0
+    },
+    {
+      "name": "预约到店订任意套系即送超萌大抱熊一个",
+      "type": 1
+    }
+  ],
+  "template":[
+    {
+      "combination": {
+        "name":"精品套餐",
+        "count":"245",
+        "list":[
+          {
+            "title": "【限时特惠】2999享8服8造...",
+            "content": "仅预约报名享受，直接到店不享受",
+            "url":"base_deprecated_set1",
+            "price":"¥3999",
+            "oldPrice":"¥5999",
+            "browse":"1326"
+          },
+          {
+            "title": "【热卖】最纯韩城馆+唯美升级",
+            "content": "专家“朴真根”团队倾力打造最纯...",
+            "url":"base_deprecated_set2",
+            "price":"¥3999",
+            "oldPrice":"¥5999",
+            "browse":"1326"
+          },
+          {
+            "title": "【热卖】最纯韩城馆+唯美升级",
+            "content": "专家“朴真根”团队倾力打造最纯...",
+            "url":"base_deprecated_set3",
+            "price":"¥3999",
+            "oldPrice":"¥5999",
+            "browse":"1326"
+          }
+        ]
+      }
+    },
+    {
+      "exhibits": {
+        "name":"作品精选",
+        "count":"245",
+        "list":[
+          {
+            "title": "【6月】第六季客照赏析",
+            "scenario":"锦华馆",
+            "style": "复古典雅端庄中国风",
+            "url":"base_deprecated_work1a",
+            "url1":"base_deprecated_work1b",
+            "url2":"base_deprecated_work1c",
+            "count":"8",
+            "browse":"1326"
+          },
+          {
+            "title": "【拉斐摄影】6月客照赏析",
+            "scenario":"维多利雅湾",
+            "style": "复古文艺青春前卫",
+            "url":"base_deprecated_work2a",
+            "url1":"base_deprecated_work2b",
+            "url2":"base_deprecated_work2c",
+            "count":"12",
+            "browse":"1326"
+          },
+          {
+            "title": "【拉斐摄影】6月客照赏析",
+            "scenario":"拉斯维加斯",
+            "style": "复古文艺青春前卫",
+            "url":"base_deprecated_work2a",
+            "url1":"base_deprecated_work2b",
+            "url2":"base_deprecated_work2c",
+            "count":"6",
+            "browse":"1326"
+          }
+        ]
+      }
+    },
+    {
+      "comments": {
+        "name":"网友点评",
+        "count":"245",
+        "list":[
+          {
+            "avatar":"user1",
+            "title": "【6月】第六季客照赏析",
+            "date":"2017-06-18",
+            "content": "因为是网上订的 所以一直都有所担心。没想到对方很大 环境也很好 服务也特别好。特别感谢化妆师英子老师 由于自己怀孕了才拍照。在选服装的时候特别累就没认真选。也没选合适。",
+            "replyContent":"感谢您的选择和信任，我们会一如既往地为更多人服务!",
+            "replyTime":"1分钟前",
+            "imageArray":["base_deprecated_work1a","base_deprecated_work1a","base_deprecated_work1a","base_deprecated_work1a","base_deprecated_work1a","base_deprecated_work1a"]
+          }
+        ]
+      }
+    },
+    {
+      "dynamic": {
+        "name":"商家动态",
+        "count":"245",
+        "list":[
+          {
+            "avatar":"user1",
+            "title":"成都维纳斯婚纱微电影《待嫁新娘》韩国婚纱微电影婚纱mv",
+            "type":0,
+            "like":"3432",
+            "nickname": "成都维纳斯婚纱摄影工作室",
+            "date":"4天前",
+            "imageArray":["base_deprecated_shipin"]
+          },
+          {
+            "avatar":"user1",
+            "title":"人生只要两次幸运便好。",
+            "type":0,
+            "like":"3432",
+            "nickname": "三亚海漫飞丝婚纱摄影",
+            "date":"5分钟前",
+            "imageArray":["base_deprecated_tuji","base_deprecated_tuji","base_deprecated_tuji","base_deprecated_tuji","base_deprecated_tuji","base_deprecated_tuji"]
+          },
+          {
+            "avatar":"user1",
+            "title":"人生只要两次幸运便好。",
+            "type":0,
+            "like":"3432",
+            "nickname": "三亚海漫飞丝婚纱摄影",
+            "date":"5分钟前",
+            "imageArray":["base_deprecated_shipin","base_deprecated_shipin","base_deprecated_shipin"]
+          }
+        ]
+      }
+    }
+  ],
+  "links": ["不满意重拍","1对1服务","7天内选片","15天出精修","无隐形消费","免费送照上门","所有底片全送","婚纱礼服任选","产品1年包换"]
+}
