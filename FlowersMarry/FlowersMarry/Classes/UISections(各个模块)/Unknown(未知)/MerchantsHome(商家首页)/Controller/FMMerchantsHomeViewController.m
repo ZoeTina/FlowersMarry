@@ -157,12 +157,12 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
     /// 商家基本信息获取
     [self loadBusinesInfoData];
     /// 商家动态数据获取
-    [self loadBusinessdDynamicModel];
-    [self.view showLoadingViewWithText:@"加载中..."];
+//    [self loadBusinessdDynamicModel];
+//    [self.view showLoadingViewWithText:@"加载中..."];
 
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         self.pageIndex++;// 页码+1
-        [self loadBusinessdDynamicModel];
+//        [self loadBusinessdDynamicModel];
     }];
 }
 
@@ -174,7 +174,7 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
 
 - (void) loadBusinesInfoData{
     
-//    self.businessModel.cp_id = @"24058";
+    self.cp_id = @"24058";
     //// 商家信息
     NSMutableDictionary *parameter = [[NSMutableDictionary alloc] init];
     [parameter setObject:self.cp_id forKey:@"cp_id"];
@@ -287,13 +287,13 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
             [self lz_make:@"客服"];
             break;
         case 101:
-            [self.footerView didClickGuanZhu:self.businessModel.cp_id];
+            [self lz_make:@"关注"];
             break;
         case 102:
             [self jumpCommentsViewController];
             break;
         case 103:
-            [self loadConventionRequest:@"1"];
+            [self lz_make:@"预约"];
             break;
         case 104:
             [self.navigationController popViewControllerAnimated:YES];
@@ -334,12 +334,12 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
             FMMerchantsHomeHeaderViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierHeaderCell forIndexPath:indexPath];
             tools.delegate = self;
             if (self.businessModel!=nil) {
-                tools.businessModel = self.businessModel;
+//                tools.businessModel = self.businessModel;
             }
             return tools;
         }else{
             FMMerchantsHomeAddressTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierAddress forIndexPath:indexPath];
-            tools.titleLabel.text = self.businessModel.cp_address;
+            tools.titleLabel.text = @"[青羊区] 太升南路288号锦天国际C座10楼1...";
             return tools;
         }
     }else if(indexPath.section==1){
@@ -382,15 +382,15 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
         }else if(indexPath.section==5){ /// 评论
             /// 0:评论 1:评论+回复 2:评论+图片 3:评论+图片+回复
             BusinessComment *evaluationModel = self.businessModel.comments[indexPath.row];
-            if (evaluationModel.ct_re_content.length>0 && evaluationModel.photo.count==0) {/// 评论+回复
+            if (indexPath.row==0) {/// 评论+回复
                 FMEvaluationTemplateFourTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierFour forIndexPath:indexPath];
                 tools.evaluationModel = evaluationModel;
                 return tools;
-            }else if (evaluationModel.photo.count>0 && evaluationModel.ct_re_content.length==0){/// 评论+图片
+            }else if (indexPath.row==1){/// 评论+图片
                 FMEvaluationTemplateThreeTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierThree forIndexPath:indexPath];
                 tools.evaluationModel = evaluationModel;
                 return tools;
-            }else if (evaluationModel.ct_re_content.length>0&&evaluationModel.photo.count>0){/// 评论+图片+回复
+            }else if (indexPath.row==2){/// 评论+图片+回复
                 FMEvaluationTemplateTwoTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTwo forIndexPath:indexPath];
                 tools.evaluationModel = evaluationModel;
                 return tools;
@@ -490,7 +490,7 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
             break;
         case 5:
             /// 评论
-            return self.businessModel.comments.count;
+            return 3;
             break;
         case 6:
             /// 动态

@@ -260,7 +260,7 @@ static CGFloat const headViewHeight = 256;
 }
 
 - (WMPageController *)p_defaultController {
-    NSArray *titles = @[@"全部",@"婚纱摄影",@"婚礼策划",@"婚纱礼服"];
+    NSArray *titles = @[@"全部",@"婚纱摄影",@"婚礼策划",@"婚纱礼服",@"婚宴酒店"];
     NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
     for (int i=0; i<titles.count; i++) {
         TTTemplateChildViewController *vc  = [TTTemplateChildViewController new];

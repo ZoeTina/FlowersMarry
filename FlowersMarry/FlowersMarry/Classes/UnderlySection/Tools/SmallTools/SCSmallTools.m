@@ -184,7 +184,7 @@
     
     currentString = [currentString stringByReplacingOccurrencesOfString:@"beta." withString:@""];
     /// 根据 / 分割字符串
-    NSArray *array = [currentString componentsSeparatedByString:@".cn/"];
+    NSArray *array = [currentString componentsSeparatedByString:@".net/"];
     /// 得到 pic
     NSArray *array1 = [array[0] componentsSeparatedByString:@"//"];
     NSArray *array2 = [array1[1] componentsSeparatedByString:@"."];

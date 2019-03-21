@@ -208,7 +208,7 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
             }
             [self.itemModelArray addObjectsFromArray:businessModel.data.list];
         }
-        [self analysisData];
+//        [self analysisData];
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self.view dismissLoadingView];
@@ -228,7 +228,7 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
 }
 
 - (void)menuView:(SCDropDownMenuView *)menu selectIndex:(SCIndexPatch *)index {
-    TTLog(@"商家首页 - index.row: %ld  index.column：%ld index.section： %ld", index.row,index.column,index.section);
+    TTLog(@"商家首页 - index.row: %ld  index.column：%ld index.section： %ld", (long)index.row,(long)index.column,(long)index.section);
     if (index.column==0) {
         self.class_id = self.smallIdArray[index.section][index.column];
         self.channel_id = self.maxIdArray[index.section];
@@ -270,19 +270,44 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
 #pragma mark - Table view data source
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TTBusinessTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    BusinessModel *businessModel = self.itemModelArray[indexPath.section];
-    tools.businessModel = businessModel;
+//    BusinessModel *businessModel = self.itemModelArray[indexPath.section];
+//    tools.businessModel = businessModel;
+    if (indexPath.section==0) {
+        tools.giftView.hidden=YES;
+        tools.activityView.hidden = YES;
+        tools.imagesViewGes.hidden = YES;
+        tools.imagesViewGe.hidden = NO;
+        tools.imagesViewBao.hidden = NO;
+    }else if (indexPath.section==1){
+        tools.giftView.hidden=NO;
+        tools.activityView.hidden = YES;
+        tools.imagesViewGes.hidden = NO;
+        tools.imagesViewGe.hidden = YES;
+        tools.imagesViewBao.hidden = YES;
+    }else if(indexPath.section==2){
+        tools.giftView.hidden=YES;
+        tools.activityView.hidden = NO;
+        tools.imagesViewGes.hidden = YES;
+        tools.imagesViewGe.hidden = YES;
+        tools.imagesViewBao.hidden = NO;
+    }else{
+        tools.giftView.hidden=NO;
+        tools.activityView.hidden = NO;
+        tools.imagesViewGes.hidden = YES;
+        tools.imagesViewGe.hidden = YES;
+        tools.imagesViewBao.hidden = NO;
+    }
     return tools;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BusinessModel *businessModel = self.itemModelArray[indexPath.section];
-    if (businessModel.youhui_num==0&&kObjectIsEmpty(businessModel.huodong)) {
+//    BusinessModel *businessModel = self.itemModelArray[indexPath.section];
+    if (indexPath.section==0) {
         return IPHONE6_W(95);
-    }else if (kObjectIsEmpty(businessModel.huodong)){
+    }else if (indexPath.section==1){
         return IPHONE6_W(115);
-    }else if(businessModel.youhui_num==0){
+    }else if(indexPath.section==2){
         return IPHONE6_W(130);
     }
     return IPHONE6_W(150);
@@ -304,7 +329,7 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
 
 // 多少个分组 section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.itemModelArray.count;
+    return 20;//self.itemModelArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -312,8 +337,9 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    BusinessModel *businessModel = self.itemModelArray[indexPath.section];
-    FMMerchantsHomeViewController *vc = [[FMMerchantsHomeViewController alloc] initBusinessModel:businessModel];
+//    BusinessModel *businessModel = self.itemModelArray[indexPath.section];
+    //    FMMerchantsHomeViewController *vc = [[FMMerchantsHomeViewController alloc] initBusinessModel:businessModel];
+    FMMerchantsHomeViewController *vc = [[FMMerchantsHomeViewController alloc] init];
     TTPushVC(vc);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

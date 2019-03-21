@@ -26,6 +26,14 @@
         self.contentView.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self addLayoutSubViews];
+        self.imagesView.image = kGetImage(@"图层34");
+        self.titleLabel.text = @"成都原摄影环球旅拍";
+        self.commentCountLabel.text = @"229条";
+        self.renqiLabel.text = @"人气 168091";
+        self.regionLabel.text = @"高新区";
+        self.studioLabel.text = @"工作室";
+        self.activityContentLabel.text = @"预约即送80寸高清海报+全家福一套";
+        self.giftContentLabel.text = @"【0元限量升级+免费试穿全新婚纱】咨询...";
     }
     return self;
 }

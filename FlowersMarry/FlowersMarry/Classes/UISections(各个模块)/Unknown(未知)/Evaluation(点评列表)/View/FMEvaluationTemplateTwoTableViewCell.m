@@ -29,29 +29,29 @@ static NSString * const reuseIdentifier = @"FMTravelCollectionViewCell";
 }
 
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = kWhiteColor;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self initView];
+        [self initConstraint];
+//        [self initialValue];
     }
     return self;
 }
 
-- (void)setEvaluationModel:(BusinessComment *)evaluationModel{
-    _evaluationModel = evaluationModel;
-    [self initView];
-    [self initConstraint];
-    [self.imagesView sd_setImageWithURL:kGetVideoURL(self.evaluationModel.avatar) placeholderImage:kGetImage(imagePlaceholder)];
-    self.nicknameLabel.text = self.evaluationModel.user_name;
-    self.datetimeLabel.text = self.evaluationModel.ct_add_time;
-    self.startRating.currentScore = [self.evaluationModel.ct_level floatValue];
+/// 设置初始值
+- (void) initialValue{
+    self.imagesView.image = kGetImage(@"user1");
+    self.nicknameLabel.text = @"网友2659996";
+    self.datetimeLabel.text = @"2017-06-18";
+//    self.startRating.currentScore = 4.0;
     self.titleLabel.text = self.evaluationModel.ct_content;
     
     if (self.evaluationModel.ct_re_content.length>0) {
-        NSString *str = @"回复：";
+        NSString *str = @"回复：感谢您的选择和信任，我们会一如既往地为更多人服务!";
         NSString *replyStr = self.evaluationModel.ct_re_content;
-        NSString *replyTime = [NSString stringWithFormat:@" %@",self.evaluationModel.ct_re_time];
+        NSString *replyTime = @"22分钟前";
         NSString *replyContent = [NSString stringWithFormat:@"%@%@%@",str,replyStr,replyTime];
         
         NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:replyContent];

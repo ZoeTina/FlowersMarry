@@ -87,39 +87,13 @@ static NSString * const reuseIdentifierThreeImage = @"FMImagesTransverseThreeTab
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self getDataRequest:self.site_id];
     self.headViewHeight = 229;
     [self initView];
     self.cityLabel.text = self.dataArray[self.indexPath.row][@"city"];
     self.placeLabel.text = self.dataArray[self.indexPath.row][@"title"];
     self.headerImageView.image = kGetImage(self.dataArray[self.indexPath.row][@"images"]);
     self.avatarImageView.image = kGetImage(self.dataArray[self.indexPath.row][@"header"]);
-}
-
-/// 获取首页的数据
-- (void) getDataRequest:(NSInteger)idx{
-    
-    NSDictionary *parameter = @{@"size":@(10),@"p":@(1),@"site_id":@(idx)};
-    [SCHttpTools getWithURLString:@"feed/recommlist" parameter:parameter success:^(id responseObject) {
-        NSDictionary *result = responseObject;
-        if ([result isKindOfClass:[NSDictionary class]]) {
-            TTLog(@"获取首页数据 ---- \n%@",[Utils lz_dataWithJSONObject:result]);
-            FMDynamicModel *model = [FMDynamicModel mj_objectWithKeyValues:result];
-            if (model.errcode == 0) {
-                [self.itemModelArray removeAllObjects];
-                [self.itemModelArray addObjectsFromArray:model.data.list];
-            }else {
-                Toast([result lz_objectForKey:@"message"]);
-            }
-        }
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        [self.view dismissLoadingView];
-    } failure:^(NSError *error) {
-        TTLog(@" -- error -- %@",error);
-        [self.tableView.mj_header endRefreshing];
-        [self.view dismissLoadingView];
-    }];
+    self.title = self.dataArray[self.indexPath.row][@"city"];
 }
 
 - (void) initView{
@@ -130,9 +104,8 @@ static NSString * const reuseIdentifierThreeImage = @"FMImagesTransverseThreeTab
         make.top.equalTo(@(kLinerViewHeight));
         make.bottom.left.right.equalTo(self.view);
     }];
-//    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableHeaderView = self.headerView;
     
-    [self.view insertSubview:self.headerView atIndex:10];
     [self.headerView addSubview:self.headerImageView];
     [self.headerView addSubview:self.avatarImageView];
     [self.headerView addSubview:self.cityLabel];
@@ -159,67 +132,93 @@ static NSString * const reuseIdentifierThreeImage = @"FMImagesTransverseThreeTab
 
 #pragma mark - Table view data source
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row==0) {/// 图文  ---  1:一张封面图
+        FMImagesRightTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierRightImage forIndexPath:indexPath];
+        tools.titleLabel.text = @"【拉斐·唯美花坊】精选客照欣赏";
+        tools.nicknameLabel.text = @"三亚海漫飞丝婚纱摄影";
+        tools.datetimeLabel.text = @"5分钟前";
+        tools.likeCountLabel.text = @"3432";
+        
+        tools.imagesView.image = kGetImage(@"图层22");
+        tools.avatarImageView.image = kGetImage(@"logo1");
+        return tools;
+    }else if (indexPath.row==1){
+        FMImagesTransverseThreeTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierThreeImage forIndexPath:indexPath];
+        tools.titleLabel.text = @"【拉斐·唯美花坊】精选客照欣赏";
+        tools.nicknameLabel.text = @"三亚薇爱婚纱摄影";
+        tools.datetimeLabel.text = @"5分钟前";
+        tools.likeCountLabel.text = @"3432";
+        
+        tools.imagesViewLeft.image = kGetImage(@"图1");
+        tools.imagesViewCenter.image = kGetImage(@"图2");
+        tools.imagesViewRight.image = kGetImage(@"图3");
+        tools.avatarImageView.image = kGetImage(@"logo1");
+        return tools;
+    }else if (indexPath.row==2){/// 图集  ---  1:一张封面图
+        FMImagesTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImage forIndexPath:indexPath];
+        tools.titleLabel.text = @"人生只要两次幸运便好。";
+        tools.nicknameLabel.text = @"三亚海漫飞丝婚纱摄影";
+        tools.datetimeLabel.text = @"5分钟前";
+        tools.likeCountLabel.text = @"3432";
 
-    DynamicModel *dynamicModel = self.itemModelArray[indexPath.row];
-    switch (dynamicModel.shape) {
-        case 1: {/// 图文
-            if (dynamicModel.thumb_num==1) {/// 图文  ---  1:一张封面图
-                FMImagesRightTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierRightImage forIndexPath:indexPath];
-                tools.dynamicModel = dynamicModel;
-                return tools;
-            }else{
-                FMImagesTransverseThreeTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierThreeImage forIndexPath:indexPath];
-                tools.dynamicModel = dynamicModel;
-                return tools;
-            }
-        }
-            break;
-        case 2: {/// 图集  ---  1:一张封面图
-            if (dynamicModel.thumb_num==1) {
-                FMImagesTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImage forIndexPath:indexPath];
-                tools.dynamicModel = dynamicModel;
-                return tools;
-            }else{
-                FMMoreImagesTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierMoreImage forIndexPath:indexPath];
-                tools.dynamicModel = dynamicModel;
-                return tools;
-            }
-        }
-        case 3: {/// 视频
-            FMVideoTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierVideo forIndexPath:indexPath];
-            tools.dynamicModel = dynamicModel;
-            return tools;
-        }
+        tools.imagesView.image = kGetImage(@"图层23");
+        tools.avatarImageView.image = kGetImage(@"logo1");
+        NSString *imagesCount = [NSString stringWithFormat:@"%d 图",9];
+        [tools.imagesCountButton setTitle:imagesCount forState:UIControlStateNormal];
+        return tools;
+    }else if(indexPath.row==3){
+        FMMoreImagesTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierMoreImage forIndexPath:indexPath];
+        tools.titleLabel.text = @"人生只要两次幸运便好。";
+        tools.nicknameLabel.text = @"三亚海漫飞丝婚纱摄影";
+        tools.datetimeLabel.text = @"5分钟前";
+        tools.likeCountLabel.text = @"3432";
+        
+        tools.imagesViewLeft.image = kGetImage(@"图层24");
+        tools.imagesViewTop.image = kGetImage(@"图层25");
+        tools.imagesViewBottom.image = kGetImage(@"图层26");
+        tools.avatarImageView.image = kGetImage(@"logo1");
+        NSString *imagesCount = [NSString stringWithFormat:@"%d 图",9];
+        [tools.imagesCountButton setTitle:imagesCount forState:UIControlStateNormal];
+        return tools;
+    }else{/// 视频
+        FMVideoTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierVideo forIndexPath:indexPath];
+        tools.titleLabel.text = @"成都维纳斯婚纱微电影《待嫁新娘》韩国婚纱微电影婚纱mv";
+        tools.nicknameLabel.text = @"成都维纳斯婚纱摄影工作室";
+        tools.datetimeLabel.text = @"4天前";
+        tools.likeCountLabel.text = @"3432";
+        tools.imagesView.image = kGetImage(@"图3");
+        tools.avatarImageView.image = kGetImage(@"logo1");
+
+        return tools;
     }
-    return [UITableViewCell new];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.itemModelArray.count;
+    return 20;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DynamicModel *dynamicModel = self.itemModelArray[indexPath.row];
-    switch (dynamicModel.shape) {
-        case 1:/// 图文
-        {
-            FMPictureWithTextViewController *vc = [[FMPictureWithTextViewController alloc] initHomeDataModel:dynamicModel];
-            TTPushVC(vc);
-        }
-            break;
-        case 2:/// 图集
-        {
-            FMShowPhotoCollectionViewController *vc = [[FMShowPhotoCollectionViewController alloc] initHomeDataModel:dynamicModel];
-            TTPushVC(vc);
-        }
-            break;
-        case 3:/// 视频
-        {
-            SCVideoPlayViewController *vc = [[SCVideoPlayViewController alloc] initHomeDataModel:dynamicModel];
-            TTPushVC(vc);
-        }
-            break;
-    }
+//    DynamicModel *dynamicModel = self.itemModelArray[indexPath.row];
+//    switch (dynamicModel.shape) {
+//        case 1:/// 图文
+//        {
+//            FMPictureWithTextViewController *vc = [[FMPictureWithTextViewController alloc] initHomeDataModel:dynamicModel];
+//            TTPushVC(vc);
+//        }
+//            break;
+//        case 2:/// 图集
+//        {
+//            FMShowPhotoCollectionViewController *vc = [[FMShowPhotoCollectionViewController alloc] initHomeDataModel:dynamicModel];
+//            TTPushVC(vc);
+//        }
+//            break;
+//        case 3:/// 视频
+//        {
+//            SCVideoPlayViewController *vc = [[SCVideoPlayViewController alloc] initHomeDataModel:dynamicModel];
+//            TTPushVC(vc);
+//        }
+//            break;
+//    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -270,25 +269,6 @@ static NSString * const reuseIdentifierThreeImage = @"FMImagesTransverseThreeTab
     return [UIView new];
 }
 
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat offsetY = scrollView.contentOffset.y + scrollView.contentInset.top;
-    if (offsetY == 0) {
-        self.headerView.y = 0;
-        self.headerView.height = self.headViewHeight;
-//        self.navigationController.navigationBar.alpha = 1.0;
-    }else if (offsetY < 0) {
-        self.headerView.y = 0;
-        self.headerView.height = self.headViewHeight-offsetY;
-    }else{
-        self.headerView.height = self.headViewHeight;
-        CGFloat min = self.headViewHeight;
-        self.headerView.y =  -((min <= offsetY) ? min : offsetY);
-//        CGFloat progress = 1- (offsetY/min);
-//        self.navigationController.navigationBar.alpha = progress;
-    }
-}
-
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -299,8 +279,8 @@ static NSString * const reuseIdentifierThreeImage = @"FMImagesTransverseThreeTab
         [_tableView registerClass:[FMImagesRightTableViewCell class] forCellReuseIdentifier:reuseIdentifierRightImage];
         [_tableView registerClass:[FMImagesTransverseThreeTableViewCell class] forCellReuseIdentifier:reuseIdentifierThreeImage];
         [_tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
-        _tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.headerView.frame), 0, 0, 0);
-        _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(CGRectGetMaxY(self.headerView.frame), 0, 0, 0);
+//        _tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.headerView.frame), 0, 0, 0);
+//        _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(CGRectGetMaxY(self.headerView.frame), 0, 0, 0);
 
         _tableView.delegate = self;
         _tableView.dataSource = self;

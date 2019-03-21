@@ -62,7 +62,7 @@
     [self.headerView.avatarImage sd_setImageWithURL:kGetImageURL(self.dynamicModel.cp_logo) placeholderImage:kGetImage(mineAvatar)];
     self.headerView.titleLabel.text = self.dynamicModel.cp_fullname;
     [self.footerView.commentsButton setTitle:self.dynamicModel.comment_num forState:UIControlStateNormal];
-    [self.footerView.likeButton setTitle:self.dynamicModel.collect_num forState:UIControlStateNormal];
+    [self.footerView.likeButton setTitle:@"187" forState:UIControlStateNormal];
     self.headerView.focusButton.selected = self.dynamicModel.is_collect==0?YES:NO;
     self.footerView.subtitleLabel.text = self.dynamicModel.intro;
     
@@ -72,9 +72,10 @@
     _configuration.shouldAutorotate = NO;   //自动旋转
     _configuration.repeatPlay = YES;     //重复播放
     _configuration.statusBarHideState = SCStatusBarHideStateFollowControls;     //设置状态栏隐藏
-    //    configuration.sourceUrl = [NSURL URLWithString:@"https://video.wed114.cn/ca615fa9183643e4b24b6d0570964fca/ce1b548248e04a8fa50e9e5d3800bde5-20a5d8d98f5b3b52ec5777f8467ec649-ld.mp4"];     //设置播放数据源
+    _configuration.sourceUrl = [NSURL URLWithString:@"https://video.wed114.cn/ca615fa9183643e4b24b6d0570964fca/ce1b548248e04a8fa50e9e5d3800bde5-20a5d8d98f5b3b52ec5777f8467ec649-ld.mp4"];     //设置播放数据源
+    TTLog(@"视频地址 -- %@",self.dynamicModel.videoURL);
     _configuration.videoGravity = SCVideoGravityResizeAspect;   //拉伸方式
-    _configuration.sourceUrl = kGetVideoURL(self.dynamicModel.videoURL);
+//    _configuration.sourceUrl = kGetVideoURL(self.dynamicModel.videoURL);
     self.playerView = [[SCVideoPlayer alloc]initWithFrame:CGRectMake(0, 0 , kScreenWidth, kScreenHeight) configuration:_configuration];
     [self.view addSubview:self.playerView];
     [self.view sendSubviewToBack:self.playerView];
