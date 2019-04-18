@@ -118,15 +118,17 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
     });
     
     
-    dispatch_group_notify(self.disGroup, mainqueue, ^{
-//            NSMutableArray *array1 = [NSMutableArray arrayWithObjects:@"婚纱摄影", @"婚礼策划", @"婚纱礼服", @"婚宴酒店", nil];
-//            NSMutableArray *array2 = [NSMutableArray arrayWithObjects:@"全城", @"成都市", @"达州市", @"绵阳市", @"南充市", @"自贡市", @"巴中市", @"攀枝花", nil];
+//    dispatch_group_notify(self.disGroup, mainqueue, ^{
+        NSMutableArray *array1 = [NSMutableArray arrayWithObjects:@"婚纱摄影", @"婚礼策划", @"婚纱礼服", @"婚宴酒店", nil];
+        NSMutableArray *array2 = [NSMutableArray arrayWithObjects:@"全城", @"成都市", @"达州市", @"绵阳市", @"南充市", @"自贡市", @"巴中市", @"攀枝花", nil];
         NSMutableArray *array3 = [NSMutableArray arrayWithObjects:@"综合排序", @"保障最好", @"作品最多", @"人气最高", nil];
-//            NSArray *array11 = @[@[@"婚纱影楼",@"摄影工作室", @"儿童摄影"],@[@"婚礼策划"],@[@"婚纱礼服"],@[@"婚宴酒店"]];
+            NSArray *array11 = @[@[@"婚纱影楼",@"摄影工作室", @"儿童摄影"],@[@"婚礼策划"],@[@"婚纱礼服"],@[@"婚宴酒店"]];
 //            NSArray *array11 = @[@[@"婚纱影楼",@"摄影工作室",@"儿童摄影"], @[@"婚礼策划",@"婚纱礼服",@"新娘跟妆",@"婚礼跟拍",@"婚礼司仪"],
 //                                 @[@"五星级酒店",@"四星级酒店",@"三星级酒店",@"二星级酒店",@"特色餐厅",@"主题会所"]];
-        NSMutableArray *data1 = [NSMutableArray arrayWithObjects:self.maxNameArray, self.regionArray, array3, nil];
-        NSMutableArray *data2 = [NSMutableArray arrayWithObjects:self.smallNameArray, @[], @[], @[], nil];
+//        NSMutableArray *data1 = [NSMutableArray arrayWithObjects:self.maxNameArray, self.regionArray, array3, nil];
+//        NSMutableArray *data2 = [NSMutableArray arrayWithObjects:self.smallNameArray, @[], @[], @[], nil];
+        NSMutableArray *data1 = [NSMutableArray arrayWithObjects:array1, array2, array3, nil];
+        NSMutableArray *data2 = [NSMutableArray arrayWithObjects:array11, @[], @[], @[], nil];
         SCDropDownMenuView *menu = [[SCDropDownMenuView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) firstArray:data1 secondArray:data2];
         menu.delegate = self;
         menu.separatorColor = kColorWithRGB(221, 221, 221);
@@ -139,7 +141,7 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
                                [NSNumber numberWithInteger:SCDropDownMenuStyleTableView],
                                [NSNumber numberWithInteger:SCDropDownMenuStyleTableView], nil];
 
-    });
+//    });
 }
 
 - (void) getGroupChannelData{
@@ -229,27 +231,27 @@ static NSString * const reuseIdentifier = @"TTBusinessTableViewCell";
 
 - (void)menuView:(SCDropDownMenuView *)menu selectIndex:(SCIndexPatch *)index {
     TTLog(@"商家首页 - index.row: %ld  index.column：%ld index.section： %ld", (long)index.row,(long)index.column,(long)index.section);
-    if (index.column==0) {
-        self.class_id = self.smallIdArray[index.section][index.column];
-        self.channel_id = self.maxIdArray[index.section];
-        TTLog(@"元数据 ----- %@ \n self.channel_id --- %@",self.smallIdArray,self.channel_id);
-    }else if (index.column==1) {
-        if (index.section==0) {
-            self.regional_id = @"";
-        }else{
-            self.regional_id = self.regionIdArray[index.section-1];
-        }
-    }else if(index.column==2){
-        if (index.section==0) {
-            self.sorting = @"";             /// 综合排序
-        }else if (index.section==1) {
-            self.sorting = @"xb";           /// 保障最好
-        }else if (index.section==2) {
-            self.sorting = @"casenum";      /// 作品最多
-        }else if (index.section==3) {
-            self.sorting = @"hits";         /// 人气最高
-        }
-    }
+//    if (index.column==0) {
+//        self.class_id = self.smallIdArray[index.section][index.column];
+//        self.channel_id = self.maxIdArray[index.section];
+//        TTLog(@"元数据 ----- %@ \n self.channel_id --- %@",self.smallIdArray,self.channel_id);
+//    }else if (index.column==1) {
+//        if (index.section==0) {
+//            self.regional_id = @"";
+//        }else{
+//            self.regional_id = self.regionIdArray[index.section-1];
+//        }
+//    }else if(index.column==2){
+//        if (index.section==0) {
+//            self.sorting = @"";             /// 综合排序
+//        }else if (index.section==1) {
+//            self.sorting = @"xb";           /// 保障最好
+//        }else if (index.section==2) {
+//            self.sorting = @"casenum";      /// 作品最多
+//        }else if (index.section==3) {
+//            self.sorting = @"hits";         /// 人气最高
+//        }
+//    }
     [self getListData];
 }
 

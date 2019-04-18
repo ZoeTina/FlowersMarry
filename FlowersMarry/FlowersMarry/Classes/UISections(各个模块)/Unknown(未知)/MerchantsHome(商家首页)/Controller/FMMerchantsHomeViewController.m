@@ -381,22 +381,22 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
             return tools;
         }else if(indexPath.section==5){ /// 评论
             /// 0:评论 1:评论+回复 2:评论+图片 3:评论+图片+回复
-            BusinessComment *evaluationModel = self.businessModel.comments[indexPath.row];
+//            BusinessComment *evaluationModel = self.businessModel.comments[indexPath.row];
             if (indexPath.row==0) {/// 评论+回复
                 FMEvaluationTemplateFourTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierFour forIndexPath:indexPath];
-                tools.evaluationModel = evaluationModel;
+//                tools.evaluationModel = evaluationModel;
                 return tools;
             }else if (indexPath.row==1){/// 评论+图片
                 FMEvaluationTemplateThreeTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierThree forIndexPath:indexPath];
-                tools.evaluationModel = evaluationModel;
+//                tools.evaluationModel = evaluationModel;
                 return tools;
             }else if (indexPath.row==2){/// 评论+图片+回复
                 FMEvaluationTemplateTwoTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTwo forIndexPath:indexPath];
-                tools.evaluationModel = evaluationModel;
+//                tools.evaluationModel = evaluationModel;
                 return tools;
             }else{  /// 纯文字
                 FMEvaluationTemplateOneTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierOne forIndexPath:indexPath];
-                tools.evaluationModel = evaluationModel;
+//                tools.evaluationModel = evaluationModel;
                 return tools;
             }
         }else {

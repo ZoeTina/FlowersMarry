@@ -56,11 +56,11 @@
     
     MV(weakSelf)
     self.startRating.currentScoreChangeBlock = ^(CGFloat score){
-        weakSelf.scoreLabel.text = [NSString stringWithFormat:@"%.1f 星",score];
+//        weakSelf.scoreLabel.text = [NSString stringWithFormat:@"%.1f 星",score];
     };
     
     // 请在设置完成最大最小的分数后再设置当前分数
-    self.startRating.currentScore = 0.0f;
+//    self.startRating.currentScore = 0.0f;
     
     [self addSubview:self.titleLabel];
     [self addSubview:self.imagesView];

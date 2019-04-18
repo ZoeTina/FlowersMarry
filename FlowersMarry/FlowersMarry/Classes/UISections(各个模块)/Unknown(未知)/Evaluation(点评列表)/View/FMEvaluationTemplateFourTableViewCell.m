@@ -37,7 +37,7 @@
     [self.imagesView sd_setImageWithURL:kGetVideoURL(self.evaluationModel.avatar) placeholderImage:kGetImage(imagePlaceholder)];
     self.nicknameLabel.text = self.evaluationModel.user_name;
     self.datetimeLabel.text = self.evaluationModel.ct_add_time;
-    self.startRating.currentScore = [self.evaluationModel.ct_level floatValue];
+//    self.startRating.currentScore = [self.evaluationModel.ct_level floatValue];
     self.titleLabel.text = self.evaluationModel.ct_content;
     
     if (self.evaluationModel.ct_re_content.length>0) {

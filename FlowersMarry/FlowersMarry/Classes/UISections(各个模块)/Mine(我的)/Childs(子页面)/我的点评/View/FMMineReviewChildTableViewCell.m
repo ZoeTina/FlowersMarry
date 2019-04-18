@@ -35,7 +35,7 @@
     _model = model;
     MV(weakSelf)
     self.startRating.currentScoreChangeBlock = ^(CGFloat score){
-        weakSelf.scoreLabel.text = [NSString stringWithFormat:@"%.1f 星",score];
+//        weakSelf.scoreLabel.text = [NSString stringWithFormat:@"%.1f 星",score];
     };
     
     // 请在设置完成最大最小的分数后再设置当前分数
