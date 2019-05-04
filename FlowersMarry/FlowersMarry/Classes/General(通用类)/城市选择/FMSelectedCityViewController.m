@@ -92,7 +92,8 @@ static NSString * const reuseIdentifierCurrent = @"FMCurrentCitysTableViewCell";
 /// 解决搜索结果tableView向上偏移20px
 -(void)viewDidLayoutSubviews {
     if(self.searchController.active) {
-        [self.tableView setFrame:CGRectMake(0, 8, kScreenWidth, self.view.height - 8)];
+        CGFloat top = 8 + kSafeAreaBottomHeight;
+        [self.tableView setFrame:CGRectMake(0, top, kScreenWidth, self.view.height - top)];
     }else {
         self.tableView.frame = self.view.bounds;
     }
@@ -131,8 +132,8 @@ static NSString * const reuseIdentifierCurrent = @"FMCurrentCitysTableViewCell";
     
     //抽取排序，A，B，C
     _indexArray = [LZChineseSort sortForStringAry:[_letterResultDictionary allKeys]];
-    [_indexArray insertObject:@"当前城市" atIndex:0];
-    [_indexArray insertObject:@"热门城市" atIndex:1];
+    [_indexArray insertObject:@"当前" atIndex:0];
+    [_indexArray insertObject:@"热门" atIndex:1];
     _searchResultsArray = [NSMutableArray new];
     _searchResultsDictionary = [NSDictionary new];
     _searchResultsIndexArray = [NSMutableArray new];
@@ -295,8 +296,9 @@ static NSString * const reuseIdentifierCurrent = @"FMCurrentCitysTableViewCell";
     kUserInfo.site_id = [NSString stringWithFormat:@"%ld",(long)model.site_id];
     kUserInfo.city_id = [NSString stringWithFormat:@"%ld",(long)model.city_id];
     [kUserInfo dump];
-    [kNotificationCenter postNotificationName:@"NoticeCityHasUpdate" object:nil];
-    [self cancelBtnClick];[self cancelBtnClick];
+    NSDictionary *dataDic = [NSDictionary dictionaryWithObject:model.site_name forKey:@"info"];
+    [kNotificationCenter postNotificationName:@"NoticeCityHasUpdate" object:nil userInfo:dataDic];
+    [self cancelBtnClick];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

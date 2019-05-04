@@ -46,9 +46,6 @@ static NSString* reuseIdentifier = @"FMCityCollectionViewCell";
 
 - (void)setHotsModel:(NSMutableArray<CityModel *> *)hotsModel{
     _hotsModel = hotsModel;
-    AppDelegate* delegate = (AppDelegate*)kAppDelegate;
-    [delegate jumpMainVC];
-    [delegate openTencentLocation];
     [self reloadView];
 }
 

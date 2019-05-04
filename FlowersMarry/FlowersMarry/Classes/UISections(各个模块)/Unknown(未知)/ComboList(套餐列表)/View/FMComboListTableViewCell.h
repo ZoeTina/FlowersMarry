@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FMBusinessModel.h"
 
 @interface FMComboListTableViewCell : UITableViewCell
 
@@ -25,9 +24,6 @@
 @property (nonatomic, strong) UILabel *browseLabel;
 /// Cell 分割线
 @property (nonatomic, strong) UIView *linerViewCell;
-
-@property (nonatomic, strong) BusinessTaoxiModel *taoxiModel;
-
 
 
 @end

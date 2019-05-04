@@ -325,7 +325,6 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
     if (indexPath.section==0) {
         if (indexPath.row==0) {
             FMMerchantsHomeHeaderView  *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierHeaderView forIndexPath:indexPath];
-            tools.listModel = self.businessModel.huodongs;
             [tools setImagesTemmpletCellCallBlock:^(NSInteger idx) {
                 [weakSelf jumpActivityDetailsController:idx];
             }];
@@ -333,9 +332,6 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
         }else if (indexPath.row==1) {
             FMMerchantsHomeHeaderViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierHeaderCell forIndexPath:indexPath];
             tools.delegate = self;
-            if (self.businessModel!=nil) {
-//                tools.businessModel = self.businessModel;
-            }
             return tools;
         }else{
             FMMerchantsHomeAddressTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierAddress forIndexPath:indexPath];
@@ -343,32 +339,14 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
             return tools;
         }
     }else if(indexPath.section==1){
-        BusinessYouHuiModel *youhui = self.businessModel.youhui;
         FMMerchantsHomeTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-        if (indexPath.row==0) {
-            tools.lineView.hidden = YES;
-            if (youhui.coupon.num != 0) {
-                tools.imagesView.image = kGetImage(@"base_merchant_coupon");
-                tools.titleLabel.text = youhui.coupon.title;
-            }else{
-                tools.titleLabel.text = youhui.gift.title;
-                tools.imagesView.image = kGetImage(@"base_merchant_gift");
-            }
-        }else{
-            if (youhui.gift.title.length != 0) {
-                tools.titleLabel.text = youhui.gift.title;
-                tools.imagesView.image = kGetImage(@"base_merchant_gift");
-            }
-        }
+        tools.titleLabel.text = (indexPath.row==0)?@"【全场通用】2000元婚照抵用券":@"预约到店订任意套系即送超萌大抱熊一个";
+        tools.imagesView.image = (indexPath.row==0)?kGetImage(@"base_merchant_coupon"):kGetImage(@"base_merchant_gift");
+        tools.lineView.hidden = (indexPath.row==0)?YES:NO;
         return tools;
     }else{
         if (indexPath.section==2) { /// 套餐
             FMComboListTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierCombination forIndexPath:indexPath];
-            BusinessTaoxiModel *taoxi = self.businessModel.taoxis[indexPath.row];
-            tools.taoxiModel = taoxi;
-            if (indexPath.row != 0) {
-                tools.linerViewCell.hidden = NO;
-            }
             return tools;
         }else if(indexPath.section==3){ /// 作品
             FMWorksListTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierWorksList forIndexPath:indexPath];
@@ -474,11 +452,11 @@ FMMerchantsHomeHeaderViewCellDelegate,FMPopupViewDelegate>
             return 3;
             break;
         case 1:
-            return self.itemModelArray.count;
+            return 2;
             break;
         case 2:
             // 套餐
-            return self.businessModel.taoxis.count;
+            return 3;
             break;
         case 3:
             /// 作品

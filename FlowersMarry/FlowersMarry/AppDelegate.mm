@@ -60,7 +60,7 @@
     [self registerMobLoginAndShare];
     [self setBaiduOrTencentMap:NO];
     //开启定位
-//    [self.location startLocation];
+    [self.location startLocation];
     /// 开启腾讯地图单次定位
     [self openTencentLocation];
     // 获取城市数据

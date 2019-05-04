@@ -101,8 +101,8 @@ static NSString * const reuseIdentifier = @"TTComboListViewController";
 #pragma mark - Table view data source
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FMComboListTableViewCell* tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    BusinessTaoxiModel *taoxiModel = self.itemModelArray[indexPath.row];
-    tools.taoxiModel = taoxiModel;
+//    BusinessTaoxiModel *taoxiModel = self.itemModelArray[indexPath.row];
+//    tools.taoxiModel = taoxiModel;
     return tools;
 }
 

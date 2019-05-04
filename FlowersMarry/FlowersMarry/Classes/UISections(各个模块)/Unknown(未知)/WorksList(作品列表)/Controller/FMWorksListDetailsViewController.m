@@ -199,7 +199,6 @@ static NSString * const reuseIdentifierCombination = @"FMComboListTableViewCell"
         }
     }else if (indexPath.section==2) {
         FMComboListTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierCombination forIndexPath:indexPath];
-        tools.taoxiModel = self.casesModel.taoxi;
         return tools;
     }else{
         FMWorksListTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierWorksList forIndexPath:indexPath];

@@ -45,42 +45,9 @@ static NSString* reuseIdentifier = @"FMConsumerProtectionCollectionViewCell";
     return self;
 }
 
-- (void)setBusinessModel:(BusinessModel *)businessModel{
-    _businessModel = businessModel;
-    if (self.businessModel.xblist.count>0) {
-        self.imagesViewArrow.hidden = NO;
-    }
-    [self.collectionView reloadData];
-    self.titleLabel.text = self.businessModel.cp_fullname;
-    [self.imagesView sd_setImageWithURL:kGetImageURL(self.businessModel.cp_logo) placeholderImage:kGetImage(imagePlaceholder)];
-
-    BusinessAuthModel *authModel = self.businessModel.auth;
-    self.baoImagesView.hidden = (authModel.xb==0) ? YES : NO;
-    self.qiImagesView.hidden = ((authModel.qy==0) && (authModel.gt == 0)) ? YES :NO;
-    self.recommendedImagesView.hidden = (authModel.isavip==0) ? YES : NO;
-
-//    MV(weakSelf)
-//    self.startRating.currentScoreChangeBlock = ^(CGFloat score){
-//        weakSelf.scoreLabel.text = [NSString stringWithFormat:@"%.1f 星",score];
-//    };
-//    
-//    // 请在设置完成最大最小的分数后再设置当前分数
-//    self.startRating.currentScore = self.businessModel.cp_rank;
-
-    if (authModel.qy==1) {
-        self.qiImagesView.image = kGetImage(@"business_qi");
-    }else if (authModel.gt==1){
-        self.qiImagesView.image = kGetImage(@"business_ge");
-    }
-    
-    [self initConstraints];
-}
-
 - (void) initView{
     
     [self.contentView addSubview:self.collectionView];
-
-//    NSArray *tags = [self.model copy];//@[@"不满意重拍",@"1对1服务",@"7天内选片",@"15天出精修",@"无隐费消费",@"免费送照上门",@"所有底片全送",@"婚纱礼服任选",@"产品1年包换"];
     
     [self addSubview:self.titleLabel];
     [self addSubview:self.imagesView];
@@ -91,7 +58,21 @@ static NSString* reuseIdentifier = @"FMConsumerProtectionCollectionViewCell";
     [self addSubview:self.scoreLabel];
     
     [self addSubview:self.imagesViewArrow];
+    if (self.businessModel.xblist.count>0) {
+        self.imagesViewArrow.hidden = NO;
+    }
+    [self.collectionView reloadData];
+    self.titleLabel.text = @"成都维纳斯婚纱摄影";
+    self.imagesView.image = kGetImage(@"base_image_tu03");
+    MV(weakSelf)
+    self.startRating.currentScoreChangeBlock = ^(CGFloat score){
+        weakSelf.scoreLabel.text = [NSString stringWithFormat:@"%.1f 星",score];
+    };
     
+    // 请在设置完成最大最小的分数后再设置当前分数
+    self.startRating.currentScore = 2.0;
+    
+    [self initConstraints];
 }
 
 
@@ -103,14 +84,14 @@ static NSString* reuseIdentifier = @"FMConsumerProtectionCollectionViewCell";
 //每个分区有多少个数据
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.businessModel.xblist.count;
+    return self.dataArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FMConsumerProtectionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.titleLabel.text = self.businessModel.xblist[indexPath.row];
+    cell.titleLabel.text = self.dataArray[indexPath.row];
     [cell.imagesView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@15);
+        make.left.equalTo(@(15));
     }];
     return cell;
 }
@@ -263,6 +244,7 @@ static NSString* reuseIdentifier = @"FMConsumerProtectionCollectionViewCell";
 - (UIImageView *)qiImagesView{
     if (!_qiImagesView) {
         _qiImagesView = [[UIImageView alloc] init];
+        _qiImagesView.image = kGetImage(@"business_qi");
     }
     return _qiImagesView;
 }

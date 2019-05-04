@@ -94,14 +94,13 @@ static NSString* reuseIdentifier = @"FMElectronicInvitationCollectionViewCell";
 
 //每个分区有多少个数据
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.invitationDataModel.data.lists.count;
+    return 20;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FMElectronicInvitationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    InvitationModel *invitationModel = self.invitationDataModel.data.lists[indexPath.row];
-    [cell.imagesView sd_setImageWithURL:kGetVideoURL(invitationModel.thumb) placeholderImage:kGetImage(imagePlaceholder)];
+    NSString *imageText = [NSString stringWithFormat:@"%u",kRandomNumber(3)+1];
+    cell.imagesView.image = kGetImage(imageText);
     return cell;
 }
 

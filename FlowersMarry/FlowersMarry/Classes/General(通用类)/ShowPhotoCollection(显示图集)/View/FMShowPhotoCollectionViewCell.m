@@ -30,33 +30,6 @@
     return self;
 }
 
-- (void)setGalleryModel:(DynamicGalleryModel *)galleryModel{
-    _galleryModel = galleryModel;
-    [self addLabel];
-    [self.imagesView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self);
-    }];
-    NSString *URLString = [SCSmallTools imageTailoring:self.galleryModel.path width:kScreenWidth height:kScreenHeight];
-    [self.imagesView sd_setImageWithURL:kGetImageURL(URLString) placeholderImage:kGetImage(imagePlaceholder)];
-    //    [self.imagesView sd_setImageWithURL:kGetImageURL(model.path)
-    //                       placeholderImage:kGetImage(imagePlaceholder)
-    //                              completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-    //                                  if (image.size.height) {
-    //                                      /**  < 图片宽度 >  */
-    //                                      CGFloat imageW = kScreenWidth;
-    //                                      /**  <根据比例 计算图片高度 >  */
-    //                                      CGFloat ratio = image.size.height / image.size.width;
-    //                                      /**  < 图片高度 + 间距 >  */
-    //                                      CGFloat imageH = ratio * imageW;
-    //                                      /**  < 缓存图片高度 没有缓存则缓存 刷新indexPath >  */
-    //                                      [self.imagesView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //                                          make.centerY.centerX.width.equalTo(self);
-    //                                          make.height.equalTo(@(imageH));
-    //                                      }];
-    //                                  }
-    //                              }];
-}
-
 - (UIImageView *)imagesView{
     if (!_imagesView) {
         _imagesView = [[UIImageView alloc] init];
@@ -73,6 +46,9 @@
     [self.contentView addSubview:label];
     _label = label;
     [self.contentView addSubview:self.imagesView];
+    [self.imagesView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self);
+    }];
 }
 
 - (void)layoutSubviews {

@@ -22,6 +22,7 @@
 #import "TTTemplateChildViewController.h"
 #import "FMTourismShootingViewController.h"
 #import "SCVideoPlayViewController.h"
+#import "YMCitySelect.h"
 
 static NSString * const tt_reuseIdentifierFirst = @"TTTemplateFirstTableViewCell";
 static NSString * const tt_reuseIdentifierSecond = @"TTTemplateSecondTableViewCell";
@@ -328,12 +329,12 @@ static CGFloat const headViewHeight = 256;
         _homeHeaderView = [[FMHomePageHeaderView alloc] init];
         [_homeHeaderView.cityLabel whenTapped:^{
             TTLog(@"单击事件");
-            //            [weakSelf presentViewController:[[YMCitySelect alloc] initWithDelegate:weakSelf] animated:YES completion:nil];
+//                        [weakSelf presentViewController:[[YMCitySelect alloc] initWithDelegate:weakSelf] animated:YES completion:nil];
             FMSelectedCityViewController *vc = [[FMSelectedCityViewController alloc] init];
             LZNavigationController *nav = [[LZNavigationController alloc] initWithRootViewController:vc];
-//            [weakSelf.navigationController presentViewController:nav animated:YES completion:^{
-//                TTLog(@"城市选择");
-//            }];
+            [weakSelf.navigationController presentViewController:nav animated:YES completion:^{
+                TTLog(@"城市选择");
+            }];
         }];
         [_homeHeaderView.searchView whenTapped:^{
             TTLog(@"单击事件-----1");

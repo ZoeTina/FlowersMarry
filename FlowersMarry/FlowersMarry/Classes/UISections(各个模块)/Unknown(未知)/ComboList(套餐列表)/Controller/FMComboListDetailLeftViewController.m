@@ -128,10 +128,10 @@ static NSString * const reuseIdentifierSectionHeaderView = @"SCTableViewSectionH
         return tools;
     }else if(indexPath.section == 1){
         FMComboListTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTemplateCombo forIndexPath:indexPath];
-        tools.taoxiModel = self.taoxiModel.txlist[indexPath.row];
-        if (indexPath.row != 0) {
-            tools.linerViewCell.hidden = NO;
-        }
+//        tools.taoxiModel = self.taoxiModel.txlist[indexPath.row];
+//        if (indexPath.row != 0) {
+//            tools.linerViewCell.hidden = NO;
+//        }
         return tools;
     }else if(indexPath.section == 2){
         FMWorksListTableViewCell *tools = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierTemplateWorks forIndexPath:indexPath];

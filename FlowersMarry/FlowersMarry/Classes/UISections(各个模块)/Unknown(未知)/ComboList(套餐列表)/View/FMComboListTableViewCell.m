@@ -26,21 +26,20 @@
         self.contentView.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initView];
+        [self setData];
     }
     return self;
 }
 
-- (void)setTaoxiModel:(BusinessTaoxiModel *)taoxiModel{
-    _taoxiModel = taoxiModel;
-    NSString *hd_thumb = [SCSmallTools imageTailoring:self.taoxiModel.tx_thumb width:IPHONE6_W(152) height:IPHONE6_W(102)];
+- (void)setData{
     
-    [self.imagesView sd_setImageWithURL:kGetImageURL(hd_thumb) placeholderImage:kGetImage(imagePlaceholder)];
-    self.titleLabel.text = self.taoxiModel.tx_title;
-    self.subtitleLabel.text = self.taoxiModel.tx_subtitle;
-    self.priceLabel.text = self.taoxiModel.tx_price;
-    self.oldPriceLabel.text = self.taoxiModel.tx_first_price;
+    self.imagesView.image = kGetImage(@"base_image_tu63");
+    self.titleLabel.text = @"【限时特惠】2999享8服8造最";
+    self.subtitleLabel.text = @"仅预约报名享受，直接到店不享受";
+    self.priceLabel.text = @"¥3999";
+    self.oldPriceLabel.text = @"¥5999";
     
-    NSAttributedString *commentAttr = [SCSmallTools sc_initBrowseImageWithText:self.taoxiModel.tx_hits];
+    NSAttributedString *commentAttr = [SCSmallTools sc_initBrowseImageWithText:@"1326"];
     self.browseLabel.attributedText = commentAttr;
 }
 

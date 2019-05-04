@@ -576,6 +576,7 @@
 /* Begin PBXFileReference section */
 		3804FD3CD2EB02D02BEC8D7A /* Pods-FlowersMarry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlowersMarry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlowersMarry/Pods-FlowersMarry.debug.xcconfig"; sourceTree = "<group>"; };
 		CBDDED6A619CF72E227673E2 /* Pods-FlowersMarry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlowersMarry.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlowersMarry/Pods-FlowersMarry.release.xcconfig"; sourceTree = "<group>"; };
+		E70366F1227AF22500F728FA /* city.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = city.json; sourceTree = "<group>"; };
 		E706D4CD20ECA45D0026E03D /* FMMineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMMineTableViewCell.h; sourceTree = "<group>"; };
 		E706D4CE20ECA45D0026E03D /* FMMineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMMineTableViewCell.m; sourceTree = "<group>"; };
 		E70734FA20ECCC50003C1737 /* FMVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMVideoTableViewCell.h; sourceTree = "<group>"; };
@@ -2014,6 +2015,7 @@
 				E71890B320E4E91100A5F1C7 /* URLDefine.h */,
 				E71890B420E4E91100A5F1C7 /* URLDefine.m */,
 				E7A4EC6E214FA6E700A5E806 /* TTMacros.h */,
+				E70366F1227AF22500F728FA /* city.json */,
 			);
 			path = "Macro(宏定义类)";
 			sourceTree = "<group>";

@@ -13,7 +13,5 @@ typedef void(^FMImageTemmpletCellCallBlock)(NSInteger idx);
 
 @interface FMMerchantsHomeHeaderView : UITableViewCell
 -(void)setImagesTemmpletCellCallBlock:(FMImageTemmpletCellCallBlock)block;
-/// 活动列表
-@property (nonatomic, strong) NSMutableArray<BusinessHuodongModel *> *listModel;
-
+@property (nonatomic,strong) NSArray *dataArray;
 @end

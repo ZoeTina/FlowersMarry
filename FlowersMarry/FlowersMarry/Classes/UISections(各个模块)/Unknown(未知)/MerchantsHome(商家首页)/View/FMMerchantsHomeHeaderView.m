@@ -39,23 +39,19 @@ static NSString* reuseIdentifiers = @"resuRoundRobinCell";
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self initView];
     }
     return self;
-}
-
-- (void)setListModel:(NSMutableArray<BusinessHuodongModel *> *)listModel{
-    _listModel = listModel;
-    [self initView];
 }
 
 - (void) initView{
     [self addPagerView];
     
-    if (self.listModel.count>1) {
+    if (self.dataArray.count>1) {
         self.pagerView.autoScrollInterval = 3;//自动轮播时间
     }
 
-    self.pageControl.numberOfPages = self.listModel.count;
+    self.pageControl.numberOfPages = 5;
     [self.pagerView reloadData];
     
 }
@@ -87,31 +83,33 @@ static NSString* reuseIdentifiers = @"resuRoundRobinCell";
 #pragma mark - TYCyclePagerViewDataSource
 
 - (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView *)pageView {
-    return self.listModel.count;
+    return self.dataArray.count;
 }
 
 - (UICollectionViewCell *)pagerView:(TYCyclePagerView *)pagerView cellForItemAtIndex:(NSInteger)index {
     FMShowPhotoCollectionViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:reuseIdentifiers forIndex:index];
+    NSString *imagesText = [NSString stringWithFormat:@"%@",self.dataArray[index]];
+    cell.imagesView.image = kGetImage(imagesText);
     
-    BusinessHuodongModel *model = self.listModel[index];
-    NSString *hd_thumb = [SCSmallTools imageTailoring:model.hd_thumb width:kScreenWidth height:self.height];
-    [cell.imagesView sd_setImageWithURL:kGetImageURL(hd_thumb)
-                       placeholderImage:kGetImage(imagePlaceholder)
-                              completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
-                                  if (image.size.height) {
-                                      /**  < 图片宽度 >  */
-                                      CGFloat imageW = kScreenWidth;
-                                      /**  <根据比例 计算图片高度 >  */
-                                      CGFloat ratio = image.size.height / image.size.width;
-                                      /**  < 图片高度 + 间距 >  */
-                                      CGFloat imageH = ratio * imageW;
-                                      /**  < 缓存图片高度 没有缓存则缓存 刷新indexPath >  */
-                                      [cell.imagesView mas_makeConstraints:^(MASConstraintMaker *make) {
-                                          make.centerY.centerX.width.equalTo(cell);
-                                          make.height.equalTo(@(imageH));
-                                      }];
-                                  }
-                              }];
+    //// 图片裁剪
+//    NSString *hd_thumb = [SCSmallTools imageTailoring:model.hd_thumb width:kScreenWidth height:self.height];
+//    [cell.imagesView sd_setImageWithURL:kGetImageURL(hd_thumb)
+//                       placeholderImage:kGetImage(imagePlaceholder)
+//                              completed:^(UIImage *image, NSError *error,SDImageCacheType cacheType, NSURL *imageURL) {
+//                                  if (image.size.height) {
+//                                      /**  < 图片宽度 >  */
+//                                      CGFloat imageW = kScreenWidth;
+//                                      /**  <根据比例 计算图片高度 >  */
+//                                      CGFloat ratio = image.size.height / image.size.width;
+//                                      /**  < 图片高度 + 间距 >  */
+//                                      CGFloat imageH = ratio * imageW;
+//                                      /**  < 缓存图片高度 没有缓存则缓存 刷新indexPath >  */
+//                                      [cell.imagesView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                                          make.centerY.centerX.width.equalTo(cell);
+//                                          make.height.equalTo(@(imageH));
+//                                      }];
+//                                  }
+//                              }];
     return cell;
 }
 
@@ -158,5 +156,12 @@ static NSString* reuseIdentifiers = @"resuRoundRobinCell";
     //    [pageControl addTarget:self action:@selector(pageControlValueChangeAction:) forControlEvents:UIControlEventValueChanged];
     [_pagerView addSubview:pageControl];
     _pageControl = pageControl;
+}
+
+- (NSArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = @[@"base_image_tu02",@"base_image_banner",@"base_image_tu02",@"base_image_banner",@"base_image_tu02"];
+    }
+    return _dataArray;
 }
 @end

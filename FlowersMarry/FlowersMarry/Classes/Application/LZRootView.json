@@ -4,6 +4,12 @@
         "title":"首页",
         "imageName":"tab_home_nor",
         "imageSelectName":"tab_home_press",
+        "controllerName":"FMHomePageViewController",
+    },
+    {
+        "title":"首页",
+        "imageName":"tab_home_nor",
+        "imageSelectName":"tab_home_press",
         "controllerName":"TTRootViewController",
     },
     {
