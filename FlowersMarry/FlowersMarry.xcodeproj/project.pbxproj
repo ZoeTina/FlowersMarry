@@ -4981,7 +4981,7 @@
 				TargetAttributes = {
 					E709CE3720DB3FC60003BBF9 = {
 						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = 8RL8MGBZ32;
+						DevelopmentTeam = 32AGX7UB6B;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -4991,11 +4991,13 @@
 					};
 					E709CE4F20DB3FC60003BBF9 = {
 						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 32AGX7UB6B;
 						ProvisioningStyle = Automatic;
 						TestTargetID = E709CE3720DB3FC60003BBF9;
 					};
 					E709CE5A20DB3FC60003BBF9 = {
 						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 32AGX7UB6B;
 						ProvisioningStyle = Automatic;
 						TestTargetID = E709CE3720DB3FC60003BBF9;
 					};
@@ -5774,7 +5776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RL8MGBZ32;
+				DEVELOPMENT_TEAM = 32AGX7UB6B;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5831,7 +5833,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8RL8MGBZ32;
+				DEVELOPMENT_TEAM = 32AGX7UB6B;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5886,6 +5888,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32AGX7UB6B;
 				INFOPLIST_FILE = FlowersMarryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fm.FlowersMarryTests;
@@ -5900,6 +5903,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32AGX7UB6B;
 				INFOPLIST_FILE = FlowersMarryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fm.FlowersMarryTests;
@@ -5913,6 +5917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32AGX7UB6B;
 				INFOPLIST_FILE = FlowersMarryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "";
@@ -5927,6 +5932,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32AGX7UB6B;
 				INFOPLIST_FILE = FlowersMarryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "";

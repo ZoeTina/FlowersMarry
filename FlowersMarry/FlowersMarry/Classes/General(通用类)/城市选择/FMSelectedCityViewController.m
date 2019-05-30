@@ -46,6 +46,7 @@ static NSString * const reuseIdentifierCurrent = @"FMCurrentCitysTableViewCell";
 @property (strong, nonatomic) NSArray               *searchResultsIndexArray;
 // 被搜索的字符串
 @property (copy, nonatomic) NSString                *searchText;
+@property (strong, nonatomic) NSArray               *dataArray;
 @end
 
 @implementation FMSelectedCityViewController
@@ -57,12 +58,30 @@ static NSString * const reuseIdentifierCurrent = @"FMCurrentCitysTableViewCell";
     
     self.title = @"城市选择";
     [self setLeftNavBarItemWithImage:@"all_btn_back_grey"];
-    [MBProgressHUD showMessage:@"" toView:self.view];
+//    [MBProgressHUD showMessage:@"" toView:self.view];
 //    int64_t delayInSeconds = 0.5;      // 延迟的时间
 //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
 //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self loadCityDataModel];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"json"];
+//    NSData *jsonData = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:nil];
+//    id result = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+//    FMSelectedCityModel *model = [FMSelectedCityModel mj_objectWithKeyValues:result];
+//    self.cityModel = model.data;
+    [self loadCityDataModel];
+//    [self initData];
+//    [self.tableView reloadData];
 //    });
+}
+
+- (NSArray *)dataArray{
+    if (!_dataArray) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"json"];
+        NSData *jsonData = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:nil];
+        _dataArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+        FMSelectedCityModel *model = [FMSelectedCityModel mj_objectWithKeyValues:_dataArray];
+        self.cityModel = model.data;
+    }
+    return _dataArray;
 }
 
 - (void)leftItemClick:(UIButton *)sender {
@@ -132,11 +151,13 @@ static NSString * const reuseIdentifierCurrent = @"FMCurrentCitysTableViewCell";
     
     //抽取排序，A，B，C
     _indexArray = [LZChineseSort sortForStringAry:[_letterResultDictionary allKeys]];
-    [_indexArray insertObject:@"当前" atIndex:0];
+    [_indexArray insertObject:@"定位" atIndex:0];
     [_indexArray insertObject:@"热门" atIndex:1];
     _searchResultsArray = [NSMutableArray new];
     _searchResultsDictionary = [NSDictionary new];
     _searchResultsIndexArray = [NSMutableArray new];
+    
+    [MBProgressHUD showMessage:@"" toView:self.view];
 }
 
 /// 获取城市数据
